@@ -1,0 +1,15 @@
+truncate order_request restart identity cascade;
+truncate order_requests_executors restart identity cascade;
+truncate moderator restart identity cascade;
+truncate message_images restart identity cascade;
+truncate executor restart identity cascade;
+truncate executor_competence restart identity cascade;
+truncate competence restart identity cascade;
+truncate "order" restart identity cascade;
+truncate feedback restart identity cascade;
+truncate ticket restart identity cascade;
+truncate message restart identity cascade;
+truncate person restart identity cascade;
+truncate customer restart identity cascade;
+truncate executor_documents restart identity cascade;
+truncate verdict restart identity cascade;

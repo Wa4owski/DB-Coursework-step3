@@ -1,0 +1,15 @@
+drop table if exists executor cascade;
+drop table if exists order_request cascade;
+drop table if exists order_requests_executors cascade;
+drop table if exists ticket cascade;
+drop table if exists executor_competence cascade;
+drop table if exists competence cascade;
+drop table if exists "order" cascade;
+drop table if exists feedback cascade;
+drop table if exists message cascade;
+drop table if exists person cascade;
+drop table if exists customer cascade;
+drop table if exists moderator cascade;
+drop table if exists message_images cascade;
+drop table if exists executor_documents cascade;
+drop table if exists verdict cascade;
