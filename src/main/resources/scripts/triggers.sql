@@ -1,11 +1,10 @@
 create or replace function form_new_order() returns trigger as $$
     begin
-        insert into "order" (order_request_id, customer_id, executor_id, status)
+        insert into "order" (order_request_id, customer_id, executor_id)
         values (
            new.order_request_id,
            (select customer_id from order_request where order_request.id = new.order_request_id),
            new.executor_id,
-           'started'
         );
     return new;
     end;
