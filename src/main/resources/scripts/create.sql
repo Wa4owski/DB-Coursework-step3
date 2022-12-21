@@ -10,23 +10,23 @@ CREATE TYPE client_type AS ENUM ('customer', 'executor');
 
 CREATE TABLE IF NOT EXISTS "person" (
                                         "id" serial PRIMARY KEY,
-                                        "email" varchar unique,
-                                        "full_name" varchar,
-                                        "password" varchar
+                                        "email" varchar not null unique,
+                                        "full_name" varchar not null,
+                                        "password" varchar not null
 );
 
 CREATE TABLE IF NOT EXISTS "customer" (
                                           "id" serial PRIMARY KEY,
                                           "person_id" int unique,
                                           "rate" float4 default null,
-                                          "status" user_status default 'active'
+                                          "status" user_status default 'active' not null
 );
 
 CREATE TABLE IF NOT EXISTS "executor" (
                                           "id" serial PRIMARY KEY,
-                                          "person_id" int unique ,
+                                          "person_id" int unique,
                                           "rate" float4 default null,
-                                          "status" user_status default 'active'
+                                          "status" user_status default 'active' not null
 );
 
 CREATE TABLE IF NOT EXISTS "competence" (
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS "order_request" (
                                                "id" serial PRIMARY KEY,
                                                "customer_id" int not null,
                                                "created_at" timestamp default current_timestamp,
-                                               "competence_id" int,
-                                               "price" int not null,
+                                               "competence_id" int not null,
+                                               "price" int not null check(price > 0),
                                                "description" text,
                                                "customer_default_agr" boolean default false,
                                                "status" order_request_status default 'opened'
@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS "order_requests_executors" (
                                                           "order_request_id" int,
                                                           "executor_id" int,
                                                           "created_at" timestamp default current_timestamp,
-                                                          "customer_agr" boolean,
-                                                          "executor_agr" boolean,
+                                                          "customer_agr" boolean not null,
+                                                          "executor_agr" boolean not null,
                                                           PRIMARY KEY ("order_request_id", "executor_id")
-    );
+);
 
 CREATE TABLE IF NOT EXISTS "order" (
                                        "id" serial PRIMARY KEY,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS "message" (
                                          "created_at" timestamp default current_timestamp,
                                          "order_id" int,
                                          "mes_text" text,
-                                         "mes_direction" message_direction
+                                         "mes_direction" message_direction not null
 );
 
 CREATE TABLE IF NOT EXISTS "message_images" (
